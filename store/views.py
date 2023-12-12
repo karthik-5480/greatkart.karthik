@@ -1,7 +1,9 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Product
 from category.models import Category
-# Create your views here.
+from django.http import HttpResponse
+
+
 def store(request,category_slug=None):
     categories=None
     products=None
@@ -21,6 +23,7 @@ def store(request,category_slug=None):
 def product_detail(request,category_slug,product_slug):
     try:
         single_product=Product.objects.get(category__slug=category_slug,slug=product_slug)
+    
     except Exception as e:
         raise e
     context={
